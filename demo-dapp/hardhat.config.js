@@ -1,4 +1,7 @@
 require("@nomiclabs/hardhat-waffle");
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config({path:__dirname+'/.env'});
+}
 
 // This is a sample Hardhat task. To learn how to create your own go to
 // https://hardhat.org/guides/create-task.html
@@ -21,9 +24,14 @@ module.exports = {
   paths: {
     artifacts: './src/artifacts',
   },
+  defaultNetwork: 'hardhat',
   networks: {
     hardhat: {
       chainId: 1337
+    },
+    ropsten: {
+      url: 'https://ropsten.infura.io/v3/3fa3ab453d4041c2b1fc57a70abe2f16',
+      accounts: [`0x${process.env.WALLET_PRIVATE_KEY}`]
     }
   }
 };

@@ -17,7 +17,7 @@ const tokenAddress = '0xf8a6407B2D73BAFdb10f6F4Bc13D6D23F15F3d01'
 // Token deployed to: 0xf8a6407B2D73BAFdb10f6F4Bc13D6D23F15F3d01
 
 function App() {
-  const [greeting, setGreetingValue] = useState()
+  const [greeting, setGreetingValue] = useState('')
   const [wallet, setWallet] = useState()
   const [userAccount, setUserAccount] = useState('')
   const [amount, setAmount] = useState('')
@@ -67,6 +67,7 @@ function App() {
       const transaction = await contract.setGreeting(greeting)
       await transaction.wait()
       fetchGreeting()
+      setGreeting('')
     }
   }
 
